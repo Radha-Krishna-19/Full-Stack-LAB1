@@ -1,0 +1,110 @@
+.word-card {
+  background: #fffbe7;
+  border-radius: 24px;
+  box-shadow: 0 4px 16px #ffb34755;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  margin: 1rem auto;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s;
+}
+.word-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 32px #ffb34799;
+}
+.word-letter {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #ffb347;
+  margin-bottom: 0.5rem;
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+.word-image {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  border-radius: 16px;
+  background: #fff3cd;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px #ffb34744;
+}
+.word-text {
+  font-size: 2.2rem;
+  color: #4ecdc4;
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+  margin-bottom: 1.2rem;
+  font-weight: bold;
+}
+
+.word-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.word-audio-btn, .word-speak-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+
+.word-audio-btn {
+  background: #4ecdc4;
+  color: #fff;
+}
+.word-audio-btn:hover {
+  background: #38b2ac;
+  transform: scale(1.05);
+}
+
+.word-speak-btn {
+  background: #ff6b9d;
+  color: #fff;
+}
+.word-speak-btn:hover:not(:disabled) {
+  background: #ff4081;
+  transform: scale(1.05);
+}
+.word-speak-btn:disabled {
+  background: #ff6b9d;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.word-speak-btn.listening {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.word-feedback {
+  background: #e3f2fd;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #0d47a1;
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
