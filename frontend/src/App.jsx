@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom'
 import axios from 'axios'
 import Alphabet from './Alphabet'
 import Words from './Words'
 import Assessment from './Assessment'
+import ClassExample from './ClassExample'
 import './App.css'
 
 function App() {
   const [childId, setChildId] = useState('')
   const [completed, setCompleted] = useState([])
-  const [view, setView] = useState('alphabets')
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -42,60 +43,54 @@ function App() {
   if (loading) return <div className="app">Loading...</div>
 
   return (
-    <div className="app">
-      <header className="app-header">
-        <h1 className="app-title">🎈 Learn Letters & Words 🎈</h1>
-        <p className="app-subtitle">Fun learning for all kids!</p>
-        <div className="header-controls">
-          <input
-            className="child-id-input"
-            value={childId}
-            onChange={(e) => setChildId(e.target.value)}
-            placeholder="Add your name"
-          />
-          <button className="reload-btn" onClick={loadProgress}>🔄 Reload</button>
-        </div>
-      </header>
-      
-      <nav className="tabs">
-        <button className={view === 'alphabets' ? 'active' : ''} 
-                onClick={() => setView('alphabets')}>
-          🔤 A-Z Letters
-        </button>
-        <button className={view === 'words' ? 'active' : ''} 
-                onClick={() => setView('words')}>
-          📚 Words
-        </button>
-        <button className={view === 'assessment' ? 'active' : ''} 
-                onClick={() => setView('assessment')}>
-          📝 Assessment
-        </button>
-        <button className={view === 'progress' ? 'active' : ''} 
-                onClick={() => setView('progress')}>
-          🏆 Progress ({completed.length})
-        </button>
-      </nav>
-      
-      <main>
-        {view === 'alphabets' && <Alphabet completed={completed} onComplete={updateProgress} />}
-        {view === 'words' && <Words completed={completed} onComplete={updateProgress} />}
-        {view === 'assessment' && <Assessment completed={completed} onComplete={updateProgress} />}
-        {view === 'progress' && (
-          <div className="progress">
-            <h2 className="progress-title">🎉 You've Learned {completed.length} Things!</h2>
-            <div className="progress-items">
-              {completed.length > 0 ? (
-                completed.map((item, i) => (
-                  <div key={i} className="progress-badge">{item}</div>
-                ))
-              ) : (
-                <p className="progress-empty">Start learning to see your progress! 🚀</p>
-              )}
-            </div>
+    <Router>
+      <div className="app">
+        <header className="app-header">
+          <h1 className="app-title">🎈 Learn Letters & Words 🎈</h1>
+          <p className="app-subtitle">Fun learning for all kids!</p>
+          <div className="header-controls">
+            <input
+              className="child-id-input"
+              value={childId}
+              onChange={(e) => setChildId(e.target.value)}
+              placeholder="Add your name"
+            />
+            <button className="reload-btn" onClick={loadProgress}>🔄 Reload</button>
           </div>
-        )}
-      </main>
-    </div>
+        </header>
+        
+        <nav className="tabs">
+          <NavLink to="/" className="nav-link">🔤 A-Z Letters</NavLink>
+          <NavLink to="/words" className="nav-link">📚 Words</NavLink>
+          <NavLink to="/assessment" className="nav-link">📝 Assessment</NavLink>
+          <NavLink to="/class-example" className="nav-link">🏫 Class Component</NavLink>
+          <NavLink to="/progress" className="nav-link">🏆 Progress ({completed.length})</NavLink>
+        </nav>
+        
+        <main>
+          <Routes>
+            <Route path="/" element={<Alphabet completed={completed} onComplete={updateProgress} />} />
+            <Route path="/words" element={<Words completed={completed} onComplete={updateProgress} />} />
+            <Route path="/assessment" element={<Assessment completed={completed} onComplete={updateProgress} />} />
+            <Route path="/class-example" element={<ClassExample />} />
+            <Route path="/progress" element={
+              <div className="progress">
+                <h2 className="progress-title">🎉 You've Learned {completed.length} Things!</h2>
+                <div className="progress-items">
+                  {completed.length > 0 ? (
+                    completed.map((item, i) => (
+                      <div key={i} className="progress-badge">{item}</div>
+                    ))
+                  ) : (
+                    <p className="progress-empty">Start learning to see your progress! 🚀</p>
+                  )}
+                </div>
+              </div>
+            } />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   )
 }
 

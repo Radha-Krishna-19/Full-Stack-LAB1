@@ -87,26 +87,29 @@
   flex-wrap: wrap;
 }
 
-.tabs button {
+.nav-link {
   font-size: 1.2rem;
   background: #f7e1ff;
   color: #b388ff;
   border-radius: 16px;
-  border: none;
+  text-decoration: none;
   padding: 0.9rem 2rem;
   font-family: 'Comic Sans MS', 'Comic Sans', cursive;
   font-weight: bold;
   transition: all 0.2s;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(179, 136, 255, 0.2);
+  display: inline-block;
 }
 
-.tabs button:hover {
+.nav-link:hover {
   transform: scale(1.08);
   box-shadow: 0 4px 16px rgba(179, 136, 255, 0.4);
+  text-decoration: none;
+  color: #b388ff;
 }
 
-.tabs button.active {
+.nav-link.active {
   background: #ffb347;
   color: #fff;
   box-shadow: 0 4px 16px rgba(255, 179, 71, 0.4);
