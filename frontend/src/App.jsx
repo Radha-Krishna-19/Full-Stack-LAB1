@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Alphabet from './Alphabet'
 import Words from './Words'
+import Assessment from './Assessment'
 import './App.css'
 
 function App() {
@@ -65,6 +66,10 @@ function App() {
                 onClick={() => setView('words')}>
           📚 Words
         </button>
+        <button className={view === 'assessment' ? 'active' : ''} 
+                onClick={() => setView('assessment')}>
+          📝 Assessment
+        </button>
         <button className={view === 'progress' ? 'active' : ''} 
                 onClick={() => setView('progress')}>
           🏆 Progress ({completed.length})
@@ -74,6 +79,7 @@ function App() {
       <main>
         {view === 'alphabets' && <Alphabet completed={completed} onComplete={updateProgress} />}
         {view === 'words' && <Words completed={completed} onComplete={updateProgress} />}
+        {view === 'assessment' && <Assessment completed={completed} onComplete={updateProgress} />}
         {view === 'progress' && (
           <div className="progress">
             <h2 className="progress-title">🎉 You've Learned {completed.length} Things!</h2>

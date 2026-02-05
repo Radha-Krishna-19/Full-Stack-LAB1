@@ -1,0 +1,54 @@
+.assessment {
+  padding: 20px;
+  text-align: center;
+}
+
+.assessment h2 {
+  color: #4a90e2;
+  margin-bottom: 20px;
+}
+
+.form-section {
+  margin: 20px 0;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+
+.form-section label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.form-section input {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.form-section button {
+  padding: 10px 20px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-section button:hover {
+  background: #357abd;
+}
+
+.question {
+  margin: 15px 0;
+}
+
+.feedback {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #28a745;
+}

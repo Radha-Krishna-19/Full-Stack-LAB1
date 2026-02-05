@@ -28,6 +28,6 @@ app.post('/api/progress/:childId', (req, res) => {
 
 const PORT = 5000;
 app.listen(PORT, () => {
-  console.log(`✅ Backend running perfectly on http://localhost:${PORT}`);
-  console.log('📱 Test it: Visit http://localhost:5000/api/progress/radhaDemo');
+  console.log(`Backend running perfectly on http://localhost:${PORT}`);
+  console.log('Test it: Visit http://localhost:5000/api/progress/radhaDemo');
 });
