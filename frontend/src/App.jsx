@@ -4,7 +4,7 @@ import axios from 'axios'
 import Alphabet from './Alphabet'
 import Words from './Words'
 import Assessment from './Assessment'
-import ClassExample from './ClassExample'
+import Progress from './Progress'
 import './App.css'
 
 function App() {
@@ -32,8 +32,8 @@ function App() {
     const newCompleted = completed.includes(item) ? completed : [...completed, item]
     setCompleted(newCompleted)
     try {
-      await axios.post(`http://localhost:5000/api/progress/${childId}`, { 
-        completed: newCompleted 
+      await axios.post(`http://localhost:5000/api/progress/${childId}`, {
+        completed: newCompleted
       })
     } catch (err) {
       console.error('Save error:', err)
@@ -58,35 +58,20 @@ function App() {
             <button className="reload-btn" onClick={loadProgress}>🔄 Reload</button>
           </div>
         </header>
-        
+
         <nav className="tabs">
           <NavLink to="/" className="nav-link">🔤 A-Z Letters</NavLink>
           <NavLink to="/words" className="nav-link">📚 Words</NavLink>
           <NavLink to="/assessment" className="nav-link">📝 Assessment</NavLink>
-          <NavLink to="/class-example" className="nav-link">🏫 Class Component</NavLink>
           <NavLink to="/progress" className="nav-link">🏆 Progress ({completed.length})</NavLink>
         </nav>
-        
+
         <main>
           <Routes>
             <Route path="/" element={<Alphabet completed={completed} onComplete={updateProgress} />} />
             <Route path="/words" element={<Words completed={completed} onComplete={updateProgress} />} />
             <Route path="/assessment" element={<Assessment completed={completed} onComplete={updateProgress} />} />
-            <Route path="/class-example" element={<ClassExample />} />
-            <Route path="/progress" element={
-              <div className="progress">
-                <h2 className="progress-title">🎉 You've Learned {completed.length} Things!</h2>
-                <div className="progress-items">
-                  {completed.length > 0 ? (
-                    completed.map((item, i) => (
-                      <div key={i} className="progress-badge">{item}</div>
-                    ))
-                  ) : (
-                    <p className="progress-empty">Start learning to see your progress! 🚀</p>
-                  )}
-                </div>
-              </div>
-            } />
+            <Route path="/progress" element={<Progress completed={completed} />} />
           </Routes>
         </main>
       </div>
